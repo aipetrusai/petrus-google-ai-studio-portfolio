@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Pablo Contreras Pérez - AI Entrepreneur & Systems Engineer">
+    <title>Pablo Contreras · AI & Systems</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* FONT REQUIREMENTS */
+        @font-face {
+            font-family: "BrandFont";
+            src: url("/fonts/brand-font.woff2") format("woff2");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            /* Font stack with BrandFont first, then Inter/System */
+            font-family: "BrandFont", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            
+            /* Colors */
+            --bg-color: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #2997ff; /* Soft Apple-like Blue */
+            --accent-hover: #0071e3;
+            --border-radius: 24px;
+            --nav-height: 60px;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* GLOBAL RESET & TYPOGRAPHY */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* LAYOUT UTILITIES */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 120px 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem; /* 40px */
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.015em;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem; /* 18px */
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(41, 151, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: rgba(0,0,0,0.05);
+            color: var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0,0,0,0.08);
+        }
+
+        /* HEADER & NAV */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 999px;
+            padding: 3px;
+            margin-left: 24px;
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: var(--nav-height);
+            overflow: hidden;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none; /* Let clicks pass through if needed, but we capture mouse move on window */
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--text-main);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-location {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        /* Floating Toolbar Animation */
+        .floating-toolbar {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 999px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: floatUp 4s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translate(-50%, 0); }
+            100% { transform: translate(-50%, -10px); }
+        }
+
+        .toolbar-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            opacity: 0.6;
+        }
+
+        .toolbar-icon:nth-child(2) { opacity: 0.4; width: 6px; height: 6px; }
+        .toolbar-icon:nth-child(3) { opacity: 0.8; width: 10px; height: 10px; }
+
+        /* ABOUT */
+        .about-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .about-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 30px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* FEATURED PROJECTS - SPLIT LAYOUT */
+        .projects-wrapper {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .projects-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            padding-bottom: 60px;
+        }
+
+        .project-item {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .project-item h3 {
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .project-item p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .project-sticky-container {
+            flex: 1;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Mobile fallback for sticky logic handled in media queries */
+
+        .project-frame {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: #f0f0f5;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .project-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.4s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .project-frame img.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        
+        .project-frame img.inactive {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* REAL WORLD SYSTEMS */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .system-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 20px;
+            padding: 32px;
+            transition: var(--transition);
+        }
+
+        .system-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transform: translateY(-4px);
+            border-color: rgba(0,0,0,0.0);
+        }
+
+        .system-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .system-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .system-link {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* EXPERIENCE TIMELINE */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e5e5e5;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 60px;
+        }
+
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            left: -4px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--accent-color);
+        }
+
+        .timeline-year {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* EDUCATION */
+        .education-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .edu-icon {
+            font-size: 2rem;
+        }
+
+        /* SKILLS */
+        .skills-section-inner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .skill-group h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #f5f5f7;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: #e0e0e0;
+        }
+
+        /* EVENTS & CERTIFICATIONS */
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .event-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+            transition: var(--transition);
+        }
+
+        .event-link:hover {
+            border-color: var(--accent-color);
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .event-info strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .event-info span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            aspect-ratio: 3/2;
+            group: ;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            font-size: 0.9rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* CONTACT CTA */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+            border-radius: 32px;
+            padding: 80px 24px;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .projects-wrapper {
+                flex-direction: column-reverse;
+            }
+            
+            .project-sticky-container {
+                height: auto;
+                position: relative;
+                width: 100%;
+                margin-bottom: 40px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none; /* Simplification for mobile, usually needs hamburger */
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="nav-container">
+        <a href="#" class="logo">Pablo Contreras · AI & Systems</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about" data-i18n="nav_about">Sobre mí</a></li>
+                <li><a href="#projects" data-i18n="nav_projects">Proyectos</a></li>
+                <li><a href="#experience" data-i18n="nav_experience">Experiencia</a></li>
+                <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+                <li><a href="#events" data-i18n="nav_events">Eventos</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="switchLanguage('es')" id="btn-es">ES</button>
+            <button class="lang-btn" onclick="switchLanguage('en')" id="btn-en">EN</button>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h1 data-i18n="hero_name">Pablo Contreras Pérez</h1>
+            <h2 data-i18n="hero_subtitle">IA, automatización y sistemas desde Granada hacia el mundo.</h2>
+            <p data-i18n="hero_desc">Estudiante de Ingeniería Informática + ADE (UGR) y emprendedor de IA, creando soluciones reales para negocios.</p>
+            <div class="btn-group">
+                <a href="#projects" class="btn btn-primary" data-i18n="hero_btn_projects">Ver proyectos</a>
+                <a href="cv/Pablo_Contreras_CV.pdf" target="_blank" class="btn btn-secondary" data-i18n="hero_btn_cv">Descargar CV</a>
+            </div>
+            <div class="hero-location" data-i18n="hero_location">Granada, España</div>
+        </div>
+        
+        <!-- Floating animated toolbar deco -->
+        <div class="floating-toolbar">
+            <div class="toolbar-icon"></div>
+            <div class="toolbar-icon"></div>
+            <div class="toolbar-icon"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="about_title">Sobre mí</h2>
+        </div>
+        <div class="about-card">
+            <div class="about-text">
+                <p data-i18n="about_p1">Estudiante de Ingeniería Informática + ADE (UGR), especializado en inteligencia artificial y automatización aplicada a negocios.</p>
+                <br>
+                <p data-i18n="about_p2">Mentalidad emprendedora y experiencia real creando soluciones de IA para agencias de marketing, empresas de servicios y proyectos de innovación. Empecé a emprender con IA en diciembre de 2023, aprovechando por primera vez el potencial de los modelos avanzados de lenguaje.</p>
+                <br>
+                <p data-i18n="about_p3">Actualmente miembro del Programa Intensivo de Talento Emprendedor de la UGR (6 ECTS) y de la Fundación AI Research & Innovation.</p>
+                <br>
+                <p style="font-size: 1rem; color: var(--text-secondary);" data-i18n="about_langs">Idiomas: Inglés C1 (Cambridge), Francés básico.</p>
+                <br>
+                <p data-i18n="about_extra" style="font-size: 1rem; color: var(--text-secondary);">Apasionado por la comunicación, la lectura, el alpinismo y la IA inspirada en la naturaleza (Swarm Intelligence y algoritmos evolutivos).</p>
+            </div>
+            <div class="about-quote" data-i18n="about_quote">
+                “Todo hombre tiene dos vidas, y la segunda comienza cuando se da cuenta de que solo tiene una.” – Confucio.
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects (Split Layout) -->
+    <section id="projects" class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="projects_title">Proyectos Destacados</h2>
+            <p class="section-subtitle" data-i18n="projects_subtitle">He desarrollado una habilidad excepcional como closer de ventas para soluciones de IA, combinando datos y storytelling.</p>
+        </div>
+
+        <div class="projects-wrapper">
+            <!-- Left: Scrollable List -->
+            <div class="projects-list">
+                
+                <div class="project-item" data-project-index="0">
+                    <h3 data-i18n="proj_1_title">Ideas Factory UGR</h3>
+                    <p data-i18n="proj_1_desc">Proyecto de inteligencia artificial para agencias inmobiliarias. Cierre de 5 ventas en una hora con contratos firmados por agencias de Granada. Responsable del diseño del flujo completo con n8n y de la estrategia de automatización.</p>
+                    <a href="#" class="btn btn-secondary" style="font-size: 0.9rem;">Case Study</a>
+                </div>
+
+                <div class="project-item" data-project-index="1">
+                    <h3 data-i18n="proj_2_title">Colaboración ViviAI</h3>
+                    <p data-i18n="proj_2_desc">Colaboración con emprendedores de ViviAI durante 2 meses, desarrollando un sistema de IA para agencias inmobiliarias. Closer de ventas: 4 cartas de intención y reuniones firmadas en 1,5 horas para Ideas Factory UGR 2025.</p>
+                </div>
+
+                <div class="project-item" data-project-index="2">
+                    <h3 data-i18n="proj_3_title">Automatización Marketing</h3>
+                    <p data-i18n="proj_3_desc">Sistemas de captación, filtrado y contacto de leads para 4 agencias de marketing. Uso de automatización avanzada (Make.com, n8n, Google Cloud, APIs de anuncios y CRM).</p>
+                </div>
+
+                <div class="project-item" data-project-index="3">
+                    <h3 data-i18n="proj_4_title">Motor de Animación 2D</h3>
+                    <p data-i18n="proj_4_desc">Pipeline que convierte un texto o audio en una animación 2D completa (guion → escenas → edición → export). Automatización creativa de principio a fin.</p>
+                </div>
+
+            </div>
+
+            <!-- Right: Sticky Image Frame -->
+            <div class="project-sticky-container">
+                <div class="project-frame">
+                    <!-- Images will be swapped via JS opacity toggle -->
+                    <img src="https://picsum.photos/id/1/800/600" class="active" id="img-0" alt="Project 1">
+                    <img src="https://picsum.photos/id/20/800/600" class="inactive" id="img-1" alt="Project 2">
+                    <img src="https://picsum.photos/id/3/800/600" class="inactive" id="img-2" alt="Project 3">
+                    <img src="https://picsum.photos/id/4/800/600" class="inactive" id="img-3" alt="Project 4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-world Systems -->
+    <section id="systems" class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="systems_title">Sistemas Reales</h2>
+            <p class="section-subtitle" data-i18n="systems_subtitle">Lo que construyo en producción, no solo experimentos.</p>
+        </div>
+        
+        <div class="systems-grid">
+            <div class="system-card">
+                <h3 data-i18n="sys_1_title">Autocalendar Eventos</h3>
+                <p data-i18n="sys_1_desc">Sistema que utiliza IA para buscar automáticamente eventos, hackatones y oportunidades relevantes. Me ha permitido participar en cientos de eventos sin buscar manualmente.</p>
+            </div>
+
+            <div class="system-card">
+                <h3 data-i18n="sys_2_title">Voice AI Agents</h3>
+                <p data-i18n="sys_2_desc">Agentes de voz con reconocimiento automático del habla, transcripción, diálogo continuo y logging. Envío automático de resúmenes por WhatsApp.</p>
+                <a href="https://drive.google.com/file/d/1QMcy2P98b4hXdVH3RWSex1xMn2ocemxD/view?usp=sharing" target="_blank" class="system-link">Ver demo video &rarr;</a>
+            </div>
+
+            <div class="system-card">
+                <h3 data-i18n="sys_3_title">Pipeline Lead Gen</h3>
+                <p data-i18n="sys_3_desc">Sistema automatizado para captar, filtrar y contactar leads en múltiples plataformas, con respuestas personalizadas. Uso de Google Cloud y APIs REST.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="exp_title">Experiencia</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <h3 data-i18n="exp_1_title">Colaboración ViviAI</h3>
+                <p data-i18n="exp_1_desc">Proyecto de IA para agencias inmobiliarias con foco en resultados medibles y cierre de contratos.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2024 – 2025</div>
+                <h3 data-i18n="exp_2_title">Agencias de Marketing</h3>
+                <p data-i18n="exp_2_desc">Desarrollo de bots de IA, automatizaciones y sistemas de apoyo para campañas. Integraciones con APIs, Notion, Make y n8n.</p>
+            </div>
+
+            <div class="timeline-item" style="border-left: none; padding-left: 0;">
+                <!-- Special block for working style -->
+                <p style="font-weight: 500; color: var(--text-main); background: #f5f5f7; padding: 20px; border-radius: 12px; display: inline-block;">
+                    <span data-i18n="work_style">Prefiero trabajar con modelos de comisión o variables ligadas a resultados, eliminando riesgo para el cliente y alineando incentivos.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="container">
+        <div class="education-card">
+            <div class="edu-icon">🎓</div>
+            <div>
+                <h3 data-i18n="edu_uni">Universidad de Granada (UGR), 2024–presente</h3>
+                <p data-i18n="edu_degree">Doble Grado en Ingeniería Informática y Administración de Empresas (GIIADE).</p>
+                <p style="color: var(--text-secondary); margin-top: 4px;" data-i18n="edu_grade">Nota PAU: Top 5% de la convocatoria.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="skills_title">Habilidades Técnicas</h2>
+        </div>
+        
+        <div class="skills-section-inner">
+            <div class="skill-group">
+                <h3 data-i18n="sk_cat_1">IA & Automatización</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Make.com (Expert)</span>
+                    <span class="skill-tag">n8n</span>
+                    <span class="skill-tag">OpenAI API</span>
+                    <span class="skill-tag">Google AI Studio</span>
+                    <span class="skill-tag">Multi-agent Systems</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3 data-i18n="sk_cat_2">Lenguajes</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript / GAS</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">R</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3 data-i18n="sk_cat_3">Cloud & Data</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Google Cloud</span>
+                    <span class="skill-tag">Firebase</span>
+                    <span class="skill-tag">Airtable</span>
+                    <span class="skill-tag">Notion API</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3>APIs</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">WhatsApp Cloud</span>
+                    <span class="skill-tag">Twilio</span>
+                    <span class="skill-tag">Stripe</span>
+                    <span class="skill-tag">Meta Ads</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events & Certifications -->
+    <section id="events" class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="events_title">Eventos y Certificaciones</h2>
+        </div>
+        
+        <div class="events-list">
+            <a href="#" class="event-link">
+                <div class="event-info">
+                    <strong data-i18n="ev_1">Top 3 en Ideation III Andalucía Oriental</strong>
+                    <span>2024</span>
+                </div>
+                <div>↗</div>
+            </a>
+            <a href="https://docs.google.com/document/d/1qTv5DnqwSUAmEflrkUe7Hw6YkXDT9OPlB-CPsQKtMYA/edit" target="_blank" class="event-link">
+                <div class="event-info">
+                    <strong data-i18n="ev_2">Ideas Factory UGR – Proyecto IA Inmobiliaria</strong>
+                    <span>Hackathon Winner</span>
+                </div>
+                <div>↗</div>
+            </a>
+            <a href="https://drive.google.com/file/d/1YFLECR2FQBrBAEVNUOnIODhBZ_R7Chvn/view?usp=drive_link" target="_blank" class="event-link">
+                <div class="event-info">
+                    <strong data-i18n="ev_3">Nestlé Skillhaton Internacional</strong>
+                    <span>3-day Hackathon</span>
+                </div>
+                <div>↗</div>
+            </a>
+            <div class="event-link" style="cursor: default;">
+                <div class="event-info">
+                    <strong data-i18n="ev_4">Google for Startups – ThePower Business School</strong>
+                    <span>Certificación IA y Startups</span>
+                </div>
+            </div>
+            <div class="event-link" style="cursor: default;">
+                <div class="event-info">
+                    <strong data-i18n="ev_5">Talent Land 2025 España</strong>
+                    <span>Becado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="container">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="gallery_title">Galería</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/1060/600/400" alt="Contenido">
+                <div class="caption" data-i18n="gal_1">Creando contenido sobre nutrición y rendimiento.</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/1/600/400" alt="Work">
+                <div class="caption" data-i18n="gal_2">Más de un año iterando con modelos avanzados de IA.</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/26/600/400" alt="Tech">
+                <div class="caption" data-i18n="gal_3">Primeros flujos de automatización y uso de API de OpenAI.</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://picsum.photos/id/60/600/400" alt="Eventos">
+                <div class="caption" data-i18n="gal_4">Eventos de IA y comunidad en Granada.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="container">
+        <div class="cta-section">
+            <h2 class="section-title" data-i18n="contact_title">¿Hablamos?</h2>
+            <p class="section-subtitle" data-i18n="contact_subtitle">Si quieres llevar la IA a tu negocio, automatizar procesos o explorar nuevas soluciones, escríbeme.</p>
+            
+            <div class="cta-buttons">
+                <a href="mailto:pablocontreras@correo.ugr.es" class="btn btn-primary">pablocontreras@correo.ugr.es</a>
+                <a href="https://github.com/aipetrusai" target="_blank" class="btn btn-secondary">GitHub</a>
+                <a href="https://byte-brutalista-elegante.lovable.app/" target="_blank" class="btn btn-secondary">Portfolio Web</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>Built by Petrus</p>
+    </div>
+</footer>
+
+<script>
+    /* --- INTERNATIONALIZATION --- */
+    const content = {
+        es: {
+            nav_about: "Sobre mí",
+            nav_projects: "Proyectos",
+            nav_experience: "Experiencia",
+            nav_skills: "Habilidades",
+            nav_events: "Eventos",
+            nav_contact: "Contacto",
+            
+            hero_name: "Pablo Contreras Pérez",
+            hero_subtitle: "IA, automatización y sistemas desde Granada hacia el mundo.",
+            hero_desc: "Estudiante de Ingeniería Informática + ADE (UGR) y emprendedor de IA, creando soluciones reales para negocios.",
+            hero_btn_projects: "Ver proyectos",
+            hero_btn_cv: "Descargar CV",
+            hero_location: "Granada, España",
+
+            about_title: "Sobre mí",
+            about_p1: "Estudiante de Ingeniería Informática + ADE (UGR), especializado en inteligencia artificial y automatización aplicada a negocios.",
+            about_p2: "Mentalidad emprendedora y experiencia real creando soluciones de IA para agencias de marketing, empresas de servicios y proyectos de innovación. Empecé a emprender con IA en diciembre de 2023, aprovechando por primera vez el potencial de los modelos avanzados de lenguaje.",
+            about_p3: "Actualmente miembro del Programa Intensivo de Talento Emprendedor de la UGR (6 ECTS) y de la Fundación AI Research & Innovation.",
+            about_langs: "Idiomas: Inglés C1 (Cambridge), Francés básico.",
+            about_extra: "Apasionado por la comunicación, la lectura, el alpinismo y la IA inspirada en la naturaleza (Swarm Intelligence y algoritmos evolutivos).",
+            about_quote: "“Todo hombre tiene dos vidas, y la segunda comienza cuando se da cuenta de que solo tiene una.” – Confucio.",
+
+            projects_title: "Proyectos Destacados",
+            projects_subtitle: "He desarrollado una habilidad excepcional como closer de ventas para soluciones de IA, combinando datos y storytelling.",
+            proj_1_title: "Ideas Factory UGR",
+            proj_1_desc: "Proyecto de inteligencia artificial para agencias inmobiliarias. Cierre de 5 ventas en una hora con contratos firmados por agencias de Granada. Responsable del diseño del flujo completo con n8n y de la estrategia de automatización.",
+            proj_2_title: "Colaboración ViviAI",
+            proj_2_desc: "Colaboración con emprendedores de ViviAI durante 2 meses, desarrollando un sistema de IA para agencias inmobiliarias. Closer de ventas: 4 cartas de intención y reuniones firmadas en 1,5 horas para Ideas Factory UGR 2025.",
+            proj_3_title: "Automatización Marketing",
+            proj_3_desc: "Sistemas de captación, filtrado y contacto de leads para 4 agencias de marketing. Uso de automatización avanzada (Make.com, n8n, Google Cloud, APIs de anuncios y CRM).",
+            proj_4_title: "Motor de Animación 2D",
+            proj_4_desc: "Pipeline que convierte un texto o audio en una animación 2D completa (guion → escenas → edición → export). Automatización creativa de principio a fin.",
+
+            systems_title: "Sistemas Reales",
+            systems_subtitle: "Lo que construyo en producción, no solo experimentos.",
+            sys_1_title: "Autocalendar Eventos",
+            sys_1_desc: "Sistema que utiliza IA para buscar automáticamente eventos, hackatones y oportunidades relevantes. Me ha permitido participar en cientos de eventos sin buscar manualmente.",
+            sys_2_title: "Voice AI Agents",
+            sys_2_desc: "Agentes de voz con reconocimiento automático del habla, transcripción, diálogo continuo y logging. Envío automático de resúmenes por WhatsApp.",
+            sys_3_title: "Pipeline Lead Gen",
+            sys_3_desc: "Sistema automatizado para captar, filtrar y contactar leads en múltiples plataformas, con respuestas personalizadas. Uso de Google Cloud y APIs REST.",
+
+            exp_title: "Experiencia",
+            exp_1_title: "Colaboración ViviAI",
+            exp_1_desc: "Proyecto de IA para agencias inmobiliarias con foco en resultados medibles y cierre de contratos.",
+            exp_2_title: "Agencias de Marketing",
+            exp_2_desc: "Desarrollo de bots de IA, automatizaciones y sistemas de apoyo para campañas. Integraciones con APIs, Notion, Make y n8n.",
+            work_style: "Prefiero trabajar con modelos de comisión o variables ligadas a resultados, eliminando riesgo para el cliente y alineando incentivos.",
+
+            edu_uni: "Universidad de Granada (UGR), 2024–presente",
+            edu_degree: "Doble Grado en Ingeniería Informática y Administración de Empresas (GIIADE).",
+            edu_grade: "Nota PAU: Top 5% de la convocatoria.",
+
+            skills_title: "Habilidades Técnicas",
+            sk_cat_1: "IA & Automatización",
+            sk_cat_2: "Lenguajes",
+            sk_cat_3: "Cloud & Data",
+
+            events_title: "Eventos y Certificaciones",
+            ev_1: "Top 3 en Ideation III Andalucía Oriental",
+            ev_2: "Ideas Factory UGR – Proyecto IA Inmobiliaria",
+            ev_3: "Nestlé Skillhaton Internacional",
+            ev_4: "Google for Startups – ThePower Business School",
+            ev_5: "Talent Land 2025 España",
+
+            gallery_title: "Galería",
+            gal_1: "Creando contenido sobre nutrición y rendimiento.",
+            gal_2: "Más de un año iterando con modelos avanzados de IA.",
+            gal_3: "Primeros flujos de automatización y uso de API de OpenAI.",
+            gal_4: "Eventos de IA y comunidad en Granada.",
+
+            contact_title: "¿Hablamos?",
+            contact_subtitle: "Si quieres llevar la IA a tu negocio, automatizar procesos o explorar nuevas soluciones, escríbeme."
+        },
+        en: {
+            nav_about: "About",
+            nav_projects: "Projects",
+            nav_experience: "Experience",
+            nav_skills: "Skills",
+            nav_events: "Events",
+            nav_contact: "Contact",
+            
+            hero_name: "Pablo Contreras Pérez",
+            hero_subtitle: "AI, automation & systems from Granada to the world.",
+            hero_desc: "Computer Engineering + Business student (UGR) and AI Entrepreneur, building real solutions for businesses.",
+            hero_btn_projects: "View Projects",
+            hero_btn_cv: "Download CV",
+            hero_location: "Granada, Spain",
+
+            about_title: "About Me",
+            about_p1: "Computer Engineering + Business Administration student (UGR), specialized in Artificial Intelligence and business automation.",
+            about_p2: "Entrepreneurial mindset with real experience building AI solutions for marketing agencies, service companies, and innovation projects. I started my AI journey in December 2023, leveraging advanced language models for the first time.",
+            about_p3: "Currently a member of the UGR Intensive Entrepreneurship Talent Program (6 ECTS) and the AI Research & Innovation Foundation.",
+            about_langs: "Languages: English C1 (Cambridge), Basic French.",
+            about_extra: "Passionate about communication, reading, alpinism, and Nature-inspired AI (Swarm Intelligence & Evolutionary Algorithms).",
+            about_quote: "“We have two lives, and the second begins when we realize we only have one.” – Confucius.",
+
+            projects_title: "Featured Projects",
+            projects_subtitle: "I have developed exceptional sales closing skills for AI solutions, combining data and storytelling.",
+            proj_1_title: "Ideas Factory UGR",
+            proj_1_desc: "AI project for real estate agencies. Closed 5 sales in one hour with signed contracts in Granada. Responsible for the full n8n workflow design and automation strategy.",
+            proj_2_title: "ViviAI Collaboration",
+            proj_2_desc: "Collaboration with ViviAI entrepreneurs for 2 months, building an AI system for real estate. Sales Closer: 4 letters of intent and meetings signed in 1.5 hours for Ideas Factory UGR 2025.",
+            proj_3_title: "Marketing Automation",
+            proj_3_desc: "Lead generation, filtering, and contact systems for 4 marketing agencies. Advanced automation (Make.com, n8n, Google Cloud, Ads APIs, CRM).",
+            proj_4_title: "2D Animation Engine",
+            proj_4_desc: "Pipeline that converts text or audio into a full 2D animation (script → scenes → editing → export). Creative automation end-to-end.",
+
+            systems_title: "Real-world Systems",
+            systems_subtitle: "What I build in production, not just experiments.",
+            sys_1_title: "Event Autocalendar",
+            sys_1_desc: "System using AI to automatically find relevant events and hackathons. Allowed me to attend hundreds of events without manual searching.",
+            sys_2_title: "Voice AI Agents",
+            sys_2_desc: "Voice agents with automatic speech recognition, transcription, continuous dialogue, and logging. Automatic summaries sent via WhatsApp.",
+            sys_3_title: "Lead Gen Pipeline",
+            sys_3_desc: "Automated system to capture, filter, and contact leads across platforms with personalized responses. Uses Google Cloud and REST APIs.",
+
+            exp_title: "Experience",
+            exp_1_title: "ViviAI Collaboration",
+            exp_1_desc: "AI project for real estate focused on measurable results and closing contracts.",
+            exp_2_title: "Marketing Agencies",
+            exp_2_desc: "Development of AI bots, automations, and support systems for campaigns. API integrations, Notion, Make, and n8n.",
+            work_style: "I prefer working on commission or results-based variables, eliminating risk for the client and aligning incentives.",
+
+            edu_uni: "University of Granada (UGR), 2024–present",
+            edu_degree: "Double Degree in Computer Engineering and Business (GIIADE).",
+            edu_grade: "PAU Score: Top 5% of cohort.",
+
+            skills_title: "Technical Skills",
+            sk_cat_1: "AI & Automation",
+            sk_cat_2: "Languages",
+            sk_cat_3: "Cloud & Data",
+
+            events_title: "Events & Certifications",
+            ev_1: "Top 3 at Ideation III Eastern Andalusia",
+            ev_2: "Ideas Factory UGR – Real Estate AI Project",
+            ev_3: "Nestlé International Skillhaton",
+            ev_4: "Google for Startups – ThePower Business School",
+            ev_5: "Talent Land 2025 Spain",
+
+            gallery_title: "Gallery",
+            gal_1: "Creating content on nutrition and performance.",
+            gal_2: "Over a year iterating with advanced AI models.",
+            gal_3: "First automation flows and OpenAI API usage.",
+            gal_4: "AI events and community in Granada.",
+
+            contact_title: "Let's talk",
+            contact_subtitle: "If you want to bring AI to your business, automate processes, or explore new solutions, write me."
+        }
+    };
+
+    function switchLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (content[lang][key]) {
+                el.innerText = content[lang][key];
+            }
+        });
+    }
+
+    /* --- HERO CANVAS ANIMATION --- */
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    // Mouse state
+    let mouse = { x: -1000, y: -1000 };
+
+    window.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        initParticles();
+    }
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.size = Math.random() * 2 + 1;
+            this.baseX = this.x;
+            this.baseY = this.y;
+            this.density = (Math.random() * 30) + 1;
+        }
+
+        update() {
+            // Mouse Interaction
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            let forceDirectionX = dx / distance;
+            let forceDirectionY = dy / distance;
+            let maxDistance = 150;
+            let force = (maxDistance - distance) / maxDistance;
+            let directionX = forceDirectionX * force * this.density;
+            let directionY = forceDirectionY * force * this.density;
+
+            if (distance < maxDistance) {
+                this.x -= directionX;
+                this.y -= directionY;
+            } else {
+                // Return to base slightly
+                if (this.x !== this.baseX) {
+                    let dx = this.x - this.baseX;
+                    this.x -= dx / 50;
+                }
+                if (this.y !== this.baseY) {
+                    let dy = this.y - this.baseY;
+                    this.y -= dy / 50;
+                }
+            }
+            
+            // Natural slight movement
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Boundaries
+            if (this.x < 0 || this.x > width) this.vx = -this.vx;
+            if (this.y < 0 || this.y > height) this.vy = -this.vy;
+            
+            // Update base to drift slowly
+            this.baseX += this.vx;
+            this.baseY += this.vy;
+            if (this.baseX < 0) this.baseX = width;
+            if (this.baseX > width) this.baseX = 0;
+            if (this.baseY < 0) this.baseY = height;
+            if (this.baseY > height) this.baseY = 0;
+        }
+
+        draw() {
+            ctx.fillStyle = 'rgba(41, 151, 255, 0.4)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        let numberOfParticles = (width * height) / 15000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+        }
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+
+    /* --- SCROLL ANIMATIONS (FADE IN) --- */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+
+    /* --- STICKY IMAGE PROJECT LOGIC --- */
+    const projectItems = document.querySelectorAll('.project-item');
+    const projectImages = document.querySelectorAll('.project-frame img');
+
+    const projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const index = entry.target.getAttribute('data-project-index');
+                // Remove active from all
+                projectImages.forEach(img => {
+                    img.classList.remove('active');
+                    img.classList.add('inactive');
+                });
+                // Add active to current
+                const activeImg = document.getElementById(`img-${index}`);
+                if (activeImg) {
+                    activeImg.classList.remove('inactive');
+                    activeImg.classList.add('active');
+                }
+            }
+        });
+    }, { threshold: 0.5, rootMargin: "-10% 0px -40% 0px" });
+
+    projectItems.forEach(item => projectObserver.observe(item));
+
+    /* --- SMOOTH SCROLL --- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+</script>
+</body>
+</html>
